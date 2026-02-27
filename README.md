@@ -29,6 +29,7 @@ A Python project that models a portfolio containing different types of assets �
 Install pandas with:
 ```bash
 pip install pandas
+```
 How to run
 Save the Python file (e.g., portfolio_tool.py).
 
@@ -114,5 +115,6 @@ License
 Free to use, modify, and learn from.
 
 text
+
 
 Copy everything above (from `# Multi‑Asset Portfolio Manager` to the end) and paste it into your `README.md` file. Save it, commit, and push to GitHub – it will look great.
