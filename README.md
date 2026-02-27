@@ -30,16 +30,17 @@ Install pandas with:
 ```bash
 pip install pandas
 ```
-How to run
-Save the Python file (e.g., portfolio_tool.py).
 
-Run it:
+## How to run
+1. Save the Python file (e.g., portfolio_tool.py).
+2. Run it:
 
-bash
+```bash
 python portfolio_tool.py
+```
 This will execute the built‑in demo, creating some assets and a portfolio, then printing a few results.
 
-Using the classes in your own code
+## Using the classes in your own code
 You can import the classes and build your own portfolios:
 
 python
@@ -59,20 +60,17 @@ my_portfolio.add_stock(warehouse)
 # Get totals
 print(f"Total value: ${my_portfolio.total_value():,.2f}")
 print(f"Total profit/loss: ${my_portfolio.total_profit_loss():,.2f}")
-File structure
-Custom exception classes
 
-Asset (abstract base class)
+## File structure
+- Custom exception classes
+- `Asset` (abstract base class)
+- `Stock`, `Bond`, `RealEstate` (subclasses)
+- `time_decorator` (for timing methods)
+- `Portfolio` class (with all methods)
+- A small demo `(if __name__ == "__main__"` block)
 
-Stock, Bond, RealEstate (subclasses)
+## Example output from the built‑in demo
 
-time_decorator (for timing methods)
-
-Portfolio class (with all methods)
-
-A small demo (if __name__ == "__main__" block)
-
-Example output from the built‑in demo
 text
 INFO:root:Asset object created. Quantity: 10, Name: AAPL
 INFO:root:Asset object created. Quantity: 1000, Name: US10Y
@@ -115,6 +113,5 @@ License
 Free to use, modify, and learn from.
 
 text
-
 
 Copy everything above (from `# Multi‑Asset Portfolio Manager` to the end) and paste it into your `README.md` file. Save it, commit, and push to GitHub – it will look great.
