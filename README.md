@@ -1,117 +1,195 @@
-markdown
-# Multi‑Asset Portfolio Manager
+# Financial Portfolio Management System (Python)
 
-A Python project that models a portfolio containing different types of assets – stocks, bonds, and real estate. It demonstrates object‑oriented programming with inheritance, abstract base classes, operator overloading, and practical financial calculations.
+## Overview
 
-## What the code does
+This project is a simple object-oriented financial portfolio management
+system built in Python. I developed it as part of strengthening my
+programming foundations while transitioning toward financial analyst
+roles.
 
-- Defines an abstract `Asset` class with common attributes (`name`, `quantity`, `purchase_price`, `current_price`) and an abstract method `current_value`.
-- Creates concrete subclasses:
-  - `Stock` (adds `symbol` and `shares` properties, `cost_basis`)
-  - `Bond` (adds `coupon_rate`, `maturity_date`)
-  - `RealEstate` (adds `location`, `square_feet`)
-- All subclasses inherit `profit_loss`, `__repr__`, and `__str__` from `Asset`.
-- A `Portfolio` class holds a list of assets and provides methods to:
-  - Add/remove assets
-  - Calculate total value, cost basis, and profit/loss (with a timing decorator)
-  - Merge two portfolios using `+` (returns new portfolio) and `+=` (in‑place)
-  - Load stocks from a CSV file (using pandas)
-  - Filter assets by current value (using `filter` and `map`)
-  - Display holdings with `enumerate`
-- Logging and custom exceptions (`InvalidQuantityError`, `InvalidPriceError`) for input validation.
-- A short demonstration at the bottom of the file (runs when you execute the script directly).
+The goal was to simulate how different asset classes (stocks, bonds,
+real estate) can be structured, validated, and analyzed within a
+portfolio using clean OOP principles.
 
-## Requirements
+The project demonstrates:
 
-- Python 3.7 or newer
-- pandas (only needed for the CSV loading feature)
+-   Object-Oriented Programming (OOP)
+-   Abstraction & Inheritance
+-   Custom Exceptions
+-   Properties & Class Methods
+-   Operator Overloading
+-   File Handling with pandas
+-   Logging & Performance Timing
+-   Functional programming concepts (map, filter, lambda)
 
-Install pandas with:
-```bash
-pip install pandas
+------------------------------------------------------------------------
+
+## Key Features
+
+### 1. Asset Abstraction
+
+An abstract base class `Asset` defines the common structure:
+
+-   Quantity validation
+-   Price validation (static method)
+-   Cost basis calculation
+-   Profit/Loss calculation
+-   Abstract `current_value` property
+
+All asset types inherit from this base class.
+
+------------------------------------------------------------------------
+
+### 2. Supported Asset Types
+
+#### Stock
+
+-   Symbol
+-   Shares
+-   Purchase price
+-   Current price
+-   Class method to instantiate from dictionary (useful for CSV loading)
+
+#### Bond
+
+-   Coupon rate
+-   Maturity date
+-   Market valuation
+
+#### Real Estate
+
+-   Location
+-   Square footage
+-   Current market value
+
+------------------------------------------------------------------------
+
+### 3. Portfolio Management
+
+The `Portfolio` class supports:
+
+-   Adding assets
+-   Removing assets by symbol
+-   Calculating total portfolio value
+-   Calculating total cost basis
+-   Calculating total profit/loss
+-   Filtering holdings above a minimum value
+-   Loading stock data from CSV
+-   Merging portfolios using `+` operator
+-   In-place merging using `+=`
+-   Indexing support
+-   Length support
+-   Holdings summary generation
+
+------------------------------------------------------------------------
+
+### 4. Error Handling
+
+Custom exceptions improve robustness:
+
+-   `InvalidQuantityError`
+-   `InvalidPriceError`
+
+These ensure that invalid financial inputs are caught early.
+
+------------------------------------------------------------------------
+
+### 5. Performance Logging
+
+A decorator `time_decorator` measures execution time of portfolio
+valuation methods and logs results using Python's built-in `logging`
+module.
+
+------------------------------------------------------------------------
+
+## Example Usage
+
+``` python
+aapl = Stock("AAPL", 10, 150, 175)
+msft = Stock("MSFT", 5, 200, 210)
+
+p = Portfolio("My Portfolio")
+p.add_stock(aapl)
+p.add_stock(msft)
+
+print("Total value:", p.total_value())
+print("Profit/loss:", p.total_profit_loss())
 ```
 
-## How to run
-1. Save the Python file (e.g., portfolio_tool.py).
-2. Run it:
+------------------------------------------------------------------------
 
-```bash
-python portfolio_tool.py
+## CSV Loading Format
+
+The CSV file should follow this structure:
+
+``` csv
+symbol,shares,purchase_price,current_price
+AAPL,10,150,175
+MSFT,5,200,210
 ```
-This will execute the built‑in demo, creating some assets and a portfolio, then printing a few results.
 
-## Using the classes in your own code
-You can import the classes and build your own portfolios:
+Load using:
 
-python
-from portfolio_tool import Stock, Bond, RealEstate, Portfolio
+``` python
+p.load_from_csv("stocks.csv")
+```
 
-# Create assets
-aapl = Stock("AAPL", 10, 150.0, 175.0)
-bond = Bond("US10Y", 1000, 95.0, 98.0, 0.02, "2030-12-31")
-warehouse = RealEstate("Warehouse", 1, 500000, 550000, "Chicago", 10000)
+------------------------------------------------------------------------
 
-# Create a portfolio and add assets
-my_portfolio = Portfolio("My Mix")
-my_portfolio.add_stock(aapl)
-my_portfolio.add_stock(bond)
-my_portfolio.add_stock(warehouse)
+## Why I Built This
 
-# Get totals
-print(f"Total value: ${my_portfolio.total_value():,.2f}")
-print(f"Total profit/loss: ${my_portfolio.total_profit_loss():,.2f}")
+Coming from a finance background, I wanted to move beyond theoretical
+knowledge and build practical systems that reflect:
 
-## File structure
-- Custom exception classes
-- `Asset` (abstract base class)
-- `Stock`, `Bond`, `RealEstate` (subclasses)
-- `time_decorator` (for timing methods)
-- `Portfolio` class (with all methods)
-- A small demo `(if __name__ == "__main__"` block)
+-   Portfolio valuation logic
+-   Profit/Loss tracking
+-   Asset structuring
+-   Data handling workflows
 
-## Example output from the built‑in demo
+Rather than using pre-built financial libraries, I implemented core
+functionality from scratch to strengthen my understanding of both
+programming fundamentals and financial calculations.
 
-text
-INFO:root:Asset object created. Quantity: 10, Name: AAPL
-INFO:root:Asset object created. Quantity: 1000, Name: US10Y
-INFO:root:Asset object created. Quantity: 1, Name: Warehouse
-INFO:root:My Portfolio Portfolio object created.
-Holdings: ['AAPL', 'US10Y', 'Warehouse']
-Total value: 873000.0
-Total cost: 786000.0
-Profit/loss: 87000.0
-Merged size: 4
-What I learned / why this project
-I built this to practice:
+------------------------------------------------------------------------
 
-Inheritance and abstract base classes (ABC, @abstractmethod)
+## Skills Demonstrated (Relevant to Financial Analyst Roles)
 
-Operator overloading (__add__, __iadd__)
+-   Financial metric calculation (Cost Basis, Market Value, P/L)
+-   Structured portfolio modeling
+-   Data ingestion via CSV
+-   Code modularity and scalability
+-   Clean error handling
+-   Analytical thinking translated into code
+-   Basic performance profiling
 
-Using super() to initialise parent classes
+------------------------------------------------------------------------
 
-Properties, class methods, static methods
+## Potential Extensions
 
-Functional programming tools (filter, map)
+Future improvements could include:
 
-Logging and custom exceptions
+-   Risk metrics (volatility, beta, Sharpe ratio)
+-   Portfolio allocation percentages
+-   Visualization using matplotlib
+-   Integration with financial APIs
+-   Discounted Cash Flow (DCF) modeling
+-   Bond yield-to-maturity calculation
+-   Exporting portfolio reports
 
-File I/O (CSV loading)
+------------------------------------------------------------------------
 
-It’s also a practical foundation for a financial analysis tool – something I can extend later with live data or visualisations.
+## Tech Stack
 
-Notes / quirks
-The CSV loader expects columns exactly named symbol, shares, purchase_price, current_price. Extra columns are ignored.
+-   Python 3
+-   pandas
+-   logging
+-   time
+-   abc (Abstract Base Classes)
 
-The time_decorator logs execution time – you’ll see those messages if logging level is INFO.
+------------------------------------------------------------------------
 
-When you merge portfolios with +, the new portfolio gets the name "MergedPortfolio" (you can rename it afterwards).
+## Author
 
-The add_stock method currently accepts any asset (stocks, bonds, real estate) – the name is a bit misleading but works.
-
-License
-Free to use, modify, and learn from.
-
-text
-
-Copy everything above (from `# Multi‑Asset Portfolio Manager` to the end) and paste it into your `README.md` file. Save it, commit, and push to GitHub – it will look great.
+Built as part of my learning journey toward financial analysis and
+quantitative roles. This project reflects hands-on application of
+finance concepts using Python.
