@@ -152,32 +152,6 @@ programming fundamentals and financial calculations.
 
 ------------------------------------------------------------------------
 
-## Skills Demonstrated (Relevant to Financial Analyst Roles)
-
--   Financial metric calculation (Cost Basis, Market Value, P/L)
--   Structured portfolio modeling
--   Data ingestion via CSV
--   Code modularity and scalability
--   Clean error handling
--   Analytical thinking translated into code
--   Basic performance profiling
-
-------------------------------------------------------------------------
-
-## Potential Extensions
-
-Future improvements could include:
-
--   Risk metrics (volatility, beta, Sharpe ratio)
--   Portfolio allocation percentages
--   Visualization using matplotlib
--   Integration with financial APIs
--   Discounted Cash Flow (DCF) modeling
--   Bond yield-to-maturity calculation
--   Exporting portfolio reports
-
-------------------------------------------------------------------------
-
 ## Tech Stack
 
 -   Python 3
@@ -193,3 +167,4 @@ Future improvements could include:
 Built as part of my learning journey toward financial analysis and
 quantitative roles. This project reflects hands-on application of
 finance concepts using Python.
+
